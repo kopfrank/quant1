@@ -2,7 +2,7 @@
   <div>
     <div class="table-container">
       <el-table :data="tableData" border>
-        <el-table-column prop="id" label="ID" min-width="100">
+        <el-table-column prop="id" label="ID" min-width="50">
           <template #default="scope">
             <el-input v-model="scope.row.id" size="small"></el-input> <!-- 可编辑的 ID 输入框 -->
           </template>
@@ -27,12 +27,13 @@
             <el-input v-model="scope.row.buyPrice" @input="calculatePrices(scope.row)" size="small"></el-input>
           </template>
         </el-table-column>
+        <el-table-column prop="sellPrice3" label="指导卖出价 3%" min-width="120"></el-table-column>
         <el-table-column prop="sellPrice5" label="指导卖出价 5%" min-width="120"></el-table-column>
         <el-table-column prop="sellPrice10" label="指导卖出价 10%" min-width="120"></el-table-column>
         <el-table-column prop="sellPrice20" label="指导卖出价 20%" min-width="120"></el-table-column>
         <el-table-column prop="sellPriceMinus5" label="指导卖出价 -5%" min-width="120"></el-table-column>
-        <el-table-column prop="sellPriceMinus10" label="指导卖出价 -10%" min-width="120"></el-table-column>
-        <el-table-column prop="sellPriceMinus20" label="指导卖出价 -20%" min-width="120"></el-table-column>
+        <el-table-column prop="sellPriceMinus10" label="指导卖出价 -10%" min-width="130"></el-table-column>
+        <el-table-column prop="sellPriceMinus20" label="指导卖出价 -20%" min-width="130"></el-table-column>
         <el-table-column label="操作" min-width="100">
           <template #default="scope">
             <el-button type="danger" @click="deleteRow(scope.$index)">删除</el-button>
@@ -74,6 +75,7 @@ export default {
         const decimalPlaces = (row.buyPrice.toString().split('.')[1] || []).length;
 
         // 使用小数位数格式化卖出价格
+        row.sellPrice3 = (buyPrice * 1.03).toFixed(decimalPlaces);
         row.sellPrice5 = (buyPrice * 1.05).toFixed(decimalPlaces);
         row.sellPrice10 = (buyPrice * 1.10).toFixed(decimalPlaces);
         row.sellPrice20 = (buyPrice * 1.20).toFixed(decimalPlaces);
@@ -91,6 +93,7 @@ export default {
         name: '',
         date: '',
         buyPrice: 0,
+        sellPrice3: '',
         sellPrice5: '',
         sellPrice10: '',
         sellPrice20: '',
