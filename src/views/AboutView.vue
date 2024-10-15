@@ -1,21 +1,32 @@
 <template>
-  <el-table :data="tableData" border style="width: 100%">
-    <el-table-column prop="code" label="代码" width="120"></el-table-column>
-    <el-table-column prop="name" label="名称" width="180"></el-table-column>
-    <el-table-column prop="date" label="估算日期" width="120"></el-table-column>
-    <el-table-column prop="buyPrice" label="拟买入价格" width="180">
-      <template #default="scope">
-        <el-input v-model="scope.row.buyPrice" @input="calculatePrices(scope.row)" size="small"></el-input>
-      </template>
-    </el-table-column>
-    <el-table-column prop="sellPrice5" label="指导卖出价 5%" width="180"></el-table-column>
-    <el-table-column prop="sellPrice10" label="指导卖出价 10%" width="180"></el-table-column>
-    <el-table-column prop="sellPrice20" label="指导卖出价 20%" width="180"></el-table-column>
-    <el-table-column prop="sellPriceMinus5" label="指导卖出价 -5%" width="180"></el-table-column>
-    <el-table-column prop="sellPriceMinus10" label="指导卖出价 -10%" width="180"></el-table-column>
-    <el-table-column prop="sellPriceMinus20" label="指导卖出价 -20%" width="180"></el-table-column>
-  </el-table>
-  <el-button @click="saveData">保存数据到 LocalStorage</el-button>
+  <div>
+    <div class="table-container">
+      <el-table :data="tableData" border>
+        <el-table-column prop="code" label="代码" min-width="120"></el-table-column>
+        <el-table-column prop="name" label="名称" min-width="120"></el-table-column>
+        <el-table-column prop="date" label="估算日期" min-width="120"></el-table-column>
+        <el-table-column prop="buyPrice" label="拟买入价格" min-width="120">
+          <template #default="scope">
+            <el-input v-model="scope.row.buyPrice" @input="calculatePrices(scope.row)" size="small"></el-input>
+          </template>
+        </el-table-column>
+        <el-table-column prop="sellPrice5" label="指导卖出价 5%" min-width="120"></el-table-column>
+        <el-table-column prop="sellPrice10" label="指导卖出价 10%" min-width="180"></el-table-column>
+        <el-table-column prop="sellPrice20" label="指导卖出价 20%" min-width="180"></el-table-column>
+        <el-table-column prop="sellPriceMinus5" label="指导卖出价 -5%" min-width="180"></el-table-column>
+        <el-table-column prop="sellPriceMinus10" label="指导卖出价 -10%" min-width="180"></el-table-column>
+        <el-table-column prop="sellPriceMinus20" label="指导卖出价 -20%" min-width="180"></el-table-column>
+        <el-table-column label="操作" min-width="100">
+          <template #default="scope">
+            <el-button type="danger" @click="deleteRow(scope.$index)">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
+    <!-- 将新增行按钮放到表格下方 -->
+    <el-button type="primary" @click="addRow">新增行</el-button>
+    <el-button type="success" @click="saveData">保存数据到 LocalStorage</el-button>
+  </div>
 </template>
 
 <script>
@@ -28,6 +39,7 @@ export default {
         { code: '510300', name: '300etf', date: '10.12', buyPrice: 3.977 },
         { code: '002896', name: '中大力德', date: '10.12', buyPrice: 28.8 },
         { code: '002456', name: '欧菲光', date: '10.12', buyPrice: 9.28 },
+        // 可以添加更多数据以测试滚动效果
       ]
     };
   },
@@ -50,6 +62,30 @@ export default {
         row.sellPriceMinus20 = (buyPrice * 0.80).toFixed(2);
       }
     },
+    // 新增一行
+    addRow() {
+      this.tableData.push({
+        code: '',
+        name: '',
+        date: '',
+        buyPrice: 0,
+        sellPrice5: '',
+        sellPrice10: '',
+        sellPrice20: '',
+        sellPriceMinus5: '',
+        sellPriceMinus10: '',
+        sellPriceMinus20: ''
+      });
+    },
+    // 删除指定行
+    deleteRow(index) {
+      this.tableData.splice(index, 1); // 删除指定索引的行
+      this.saveData(); // 更新 LocalStorage
+      this.$message({
+        message: '行已删除',
+        type: 'success',
+      });
+    },
     // 保存数据到 localStorage
     saveData() {
       localStorage.setItem('tableData', JSON.stringify(this.tableData));
@@ -63,10 +99,7 @@ export default {
 </script>
 
 <style>
-body {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
+
+.table-container {
 }
 </style>
-

@@ -23,8 +23,15 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <style scoped>
 header {
+  margin-top:20px;
   line-height: 1.5;
   max-height: 100vh;
+}
+
+body {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
 }
 
 .logo {
@@ -60,8 +67,8 @@ nav a:first-of-type {
 @media (min-width: 1024px) {
   header {
     display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+    place-items: left;
+
   }
 
   .logo {
