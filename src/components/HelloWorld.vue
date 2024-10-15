@@ -9,11 +9,11 @@ defineProps({
 
 <template>
   <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
+    <h2 class="green">耐心 坚韧</h2>
     <h3>
-      You’ve successfully created a project with
-      <a href="https://vite.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
+     event driven + good price + risk control 
+     <br>
+     壁虎理论+吃鱼理论+价格 价位太高 再好的逻辑也不进
     </h3>
   </div>
 </template>
