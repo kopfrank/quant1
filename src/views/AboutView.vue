@@ -2,9 +2,21 @@
   <div>
     <div class="table-container">
       <el-table :data="tableData" border>
-        <el-table-column prop="code" label="代码" min-width="120"></el-table-column>
-        <el-table-column prop="name" label="名称" min-width="120"></el-table-column>
-        <el-table-column prop="date" label="估算日期" min-width="120"></el-table-column>
+        <el-table-column prop="code" label="代码" min-width="120">
+          <template #default="scope">
+            <el-input v-model="scope.row.code" size="small"></el-input> <!-- 添加可编辑的输入框 -->
+          </template>
+        </el-table-column>
+        <el-table-column prop="name" label="名称" min-width="120">
+          <template #default="scope">
+            <el-input v-model="scope.row.name" size="small"></el-input> <!-- 添加可编辑的输入框 -->
+          </template>
+        </el-table-column>
+        <el-table-column prop="date" label="估算日期" min-width="120">
+          <template #default="scope">
+            <el-input v-model="scope.row.date" size="small"></el-input> <!-- 添加可编辑的输入框 -->
+          </template>
+        </el-table-column>
         <el-table-column prop="buyPrice" label="拟买入价格" min-width="120">
           <template #default="scope">
             <el-input v-model="scope.row.buyPrice" @input="calculatePrices(scope.row)" size="small"></el-input>
@@ -99,7 +111,7 @@ export default {
 </script>
 
 <style>
-
 .table-container {
+  /* 可以根据需要添加样式 */
 }
 </style>
