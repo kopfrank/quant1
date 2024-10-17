@@ -55,6 +55,12 @@
     <!-- 将新增行按钮放到表格下方 -->
     <el-button type="primary" @click="addRow">新增行</el-button>
     <el-button type="success" @click="saveData">保存数据到本地</el-button>
+    <br>
+    <el-button type="primary" @click="exportMultipleData" style="margin-top:10px;margin-right:10px;margin-bottom: 10px;">导出数据</el-button>
+    <br>
+    <span>导入数据: </span>
+    <input type="file" @change="importMultipleData" accept=".json"/>
+
   </div>
 </template>
 
@@ -108,6 +114,51 @@ export default {
         row.holdvalue = (buyPrice * holdposition).toFixed(0); // 不显示小数
       }
     },
+    // 导出数据为 JSON 文件
+    exportMultipleData() {
+      const data = {
+        tradeTableData: localStorage.getItem('tradeTableData'),
+        aboutTableData: localStorage.getItem('aboutTableData'), // 其他项目
+        homeTableData: localStorage.getItem('homeTableData'),
+        profitTableData: localStorage.getItem('profitTableData'), // 其他项目
+        // 可以添加更多项
+      };
+
+      const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'localStorageData.json'; // 文件名
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    },
+    // 导入 JSON 文件并保存到 localStorage
+    importMultipleData(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      
+      reader.onload = function(e) {
+        const content = e.target.result;
+        try {
+          const parsedData = JSON.parse(content);
+          for (const key in parsedData) {
+            if (parsedData.hasOwnProperty(key)) {
+              localStorage.setItem(key, parsedData[key]);
+            }
+          }
+          alert('数据导入成功！');
+        } catch (err) {
+          alert('数据格式错误，导入失败！');
+        }
+      };
+
+      if (file) {
+        reader.readAsText(file);
+      }
+    },
+
+
 
     // 格式化数字，添加千分位
     formatValue(value) {
