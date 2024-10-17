@@ -42,6 +42,7 @@
       </el-table>
     </div>
     <!-- 将新增行按钮放到表格下方 -->
+    <br>
     <el-button type="primary" @click="addRow">新增行</el-button>
     <el-button type="success" @click="saveData">保存数据到本地</el-button>
   </div>
@@ -117,7 +118,7 @@ export default {
       // 保存数据到 localStorage
       localStorage.setItem('aboutTableData', JSON.stringify(this.tableData));
       this.$message({
-        message: '数据已保存到 LocalStorage',
+        message: '数据已保存到本地',
         type: 'success',
       });
     }

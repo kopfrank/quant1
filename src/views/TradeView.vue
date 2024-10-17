@@ -17,22 +17,22 @@
             <el-input v-model="scope.row.name" size="small"></el-input>
           </template>
         </el-table-column>
-        <el-table-column prop="date" label="记录日期" min-width="120">
+        <el-table-column prop="date" label="操作日期" min-width="120">
           <template #default="scope">
             <el-input v-model="scope.row.date" size="small"></el-input>
           </template>
         </el-table-column>
-        <el-table-column prop="buyPrice" label="成本价" min-width="120">
+        <el-table-column prop="buyPrice" label="买入价" min-width="120">
           <template #default="scope">
             <el-input v-model="scope.row.buyPrice" @input="calculatePrices(scope.row)" size="small"></el-input>
           </template>
         </el-table-column>
-        <el-table-column prop="holdposition" label="持有数量" min-width="120">
+        <el-table-column prop="holdposition" label="买入数量" min-width="120">
           <template #default="scope">
             <el-input v-model="scope.row.holdposition" @input="calculateValue(scope.row)" size="small"></el-input>
           </template>
         </el-table-column>
-        <el-table-column prop="holdvalue" label="持仓价值" min-width="120">
+        <el-table-column prop="holdvalue" label="买入价值" min-width="120">
           <template #default="scope">
             <span>{{ formatValue(scope.row.holdvalue) }}</span> <!-- 显示格式化后的持仓价值 -->
           </template>
@@ -72,7 +72,7 @@ export default {
     };
   },
   mounted() {
-    const savedData = localStorage.getItem('homeTableData');
+    const savedData = localStorage.getItem('tradeTableData');
     if (savedData) {
       this.tableData = JSON.parse(savedData);
     }
@@ -150,7 +150,7 @@ export default {
     // 保存数据到 localStorage
     saveData() {
       this.tableData.sort((a, b) => a.id - b.id);
-      localStorage.setItem('homeTableData', JSON.stringify(this.tableData));
+      localStorage.setItem('tradeTableData', JSON.stringify(this.tableData));
       this.$message({
         message: '数据已保存到本地',
         type: 'success',

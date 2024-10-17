@@ -13,6 +13,7 @@ import HelloWorld from './components/HelloWorld.vue'
 
       <nav>
         <RouterLink to="/">持仓</RouterLink>
+        <RouterLink to="/trade">买卖记录</RouterLink>
         <RouterLink to="/about">投研计算器</RouterLink>
       </nav>
     </div>
