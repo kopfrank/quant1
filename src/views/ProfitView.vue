@@ -2,7 +2,7 @@
   <div>
     <!-- 显示盈亏数字的区域 -->
     <div class="summary-container">
-      <span>盈亏总计: {{ totalProfit }}</span>
+      <span>盈亏总计: ¥{{ totalProfit }}</span>
     </div>
 
     <div class="table-container">
@@ -45,7 +45,7 @@
     <el-pagination
       layout="total, prev, pager, next"
       :total="tableData.length"
-      :page-size="20"
+      :page-size="10"
       v-model:current-page="currentPage"
       @current-change="handlePageChange">
     </el-pagination>
@@ -56,6 +56,7 @@
     <el-button type="success" @click="saveData">保存数据到本地</el-button>
   </div>
 </template>
+
 
 
 
@@ -72,7 +73,7 @@ export default {
         // Add more rows for testing
       ],
       currentPage: 1, // 当前页码
-      pageSize: 20, // 每页显示的行数
+      pageSize: 10, // 每页显示的行数
     };
   },
   mounted() {
@@ -84,10 +85,16 @@ export default {
   computed: {
     // 计算盈亏总和
     totalProfit() {
-      return this.tableData.reduce((total, row) => {
+      const total = this.tableData.reduce((total, row) => {
         const value = parseFloat(row.buyPrice);
         return total + (isNaN(value) ? 0 : value);
-      }, 0).toFixed(0); // 保留两位小数
+      }, 0); // 计算总和
+
+      // 使用Intl.NumberFormat格式化为千分位和百万分位
+      return new Intl.NumberFormat('en-US', { 
+        minimumFractionDigits: 0, 
+        maximumFractionDigits: 0 
+      }).format(total); // 保留两位小数
     },
     // 分页后的数据
     paginatedData() {
@@ -143,9 +150,8 @@ export default {
     }
   }
 };
-
-
 </script>
+
 
 <style>
 .table-container {
