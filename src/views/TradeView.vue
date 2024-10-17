@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="table-container">
-      <el-table :data="tableData" border>
+      <el-table :data="paginatedData" border>
         <el-table-column prop="id" label="ID" min-width="50">
           <template #default="scope">
             <el-input v-model="scope.row.id" size="small"></el-input> <!-- 可编辑的 ID 输入框 -->
@@ -46,11 +46,23 @@
         <el-table-column prop="sellPriceMinus20" label="指导卖出价 -20%" min-width="130"></el-table-column>
         <el-table-column label="操作" min-width="100">
           <template #default="scope">
-            <el-button type="danger" @click="deleteRow(scope.$index)">删除</el-button>
+            <el-button type="danger" @click="deleteRow(scope.$index + (currentPage - 1) * pageSize)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
     </div>
+    <br>
+
+    <!-- 分页控件 -->
+    <el-pagination
+      background
+      layout="prev, pager, next"
+      :total="tableData.length"
+      :page-size="pageSize"
+      v-model:current-page="currentPage"
+      @current-change="handlePageChange">
+    </el-pagination>
+
     <br>
     <!-- 将新增行按钮放到表格下方 -->
     <el-button type="primary" @click="addRow">新增行</el-button>
@@ -68,8 +80,18 @@ export default {
         { id: 3, code: '510300', name: '300etf', date: '10.12', buyPrice: 3.977, holdposition: 0 },
         { id: 4, code: '002896', name: '中大力德', date: '10.12', buyPrice: 28.8, holdposition: 0 },
         { id: 5, code: '002456', name: '欧菲光', date: '10.12', buyPrice: 9.28, holdposition: 0 },
-      ]
+      ],
+      currentPage: 1,
+      pageSize: 10
     };
+  },
+  computed: {
+    // 计算当前页显示的数据
+    paginatedData() {
+      const start = (this.currentPage - 1) * this.pageSize;
+      const end = start + this.pageSize;
+      return this.tableData.slice(start, end);
+    }
   },
   mounted() {
     const savedData = localStorage.getItem('tradeTableData');
@@ -92,12 +114,10 @@ export default {
         row.sellPriceMinus5 = (buyPrice * 0.95).toFixed(decimalPlaces);
         row.sellPriceMinus10 = (buyPrice * 0.90).toFixed(decimalPlaces);
         row.sellPriceMinus20 = (buyPrice * 0.80).toFixed(decimalPlaces);
-      
       }
       if (!isNaN(holdposition)) {
         row.holdvalue = (buyPrice * holdposition).toFixed(0); // 不显示小数
       }
-
     },
 
     // 计算持仓价值 
@@ -155,6 +175,11 @@ export default {
         message: '数据已保存到本地',
         type: 'success',
       });
+    },
+
+    // 处理页面变化
+    handlePageChange(newPage) {
+      this.currentPage = newPage;
     }
   }
 };

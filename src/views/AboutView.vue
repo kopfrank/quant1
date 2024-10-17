@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="table-container">
-      <el-table :data="tableData" border>
+      <el-table :data="currentTableData" border>
         <el-table-column prop="id" label="ID" min-width="50">
           <template #default="scope">
             <el-input v-model="scope.row.id" size="small"></el-input> <!-- 可编辑的 ID 输入框 -->
@@ -41,10 +41,33 @@
         </el-table-column>
       </el-table>
     </div>
+    <br>
+    <!-- 分页组件 -->
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="currentPage"
+      :page-sizes="[5, 10, 20, 50]"
+      :page-size="pageSize"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="tableData.length">
+    </el-pagination>
+
     <!-- 将新增行按钮放到表格下方 -->
     <br>
     <el-button type="primary" @click="addRow">新增行</el-button>
     <el-button type="success" @click="saveData">保存数据到本地</el-button>
+  </div>
+
+  <!-- 盈亏百分比计算器 -->
+  <div class="calculator-container">
+    <h3>盈亏百分比计算器</h3>
+    <el-input v-model="buyPriceInput" placeholder="请输入买入价" size="small" type="number" style="width: 160px;height:33px"></el-input>
+    <el-input v-model="sellPriceInput" placeholder="请输入卖出价" size="small" type="number" style="width: 160px;height:33px"></el-input>
+    <el-button type="primary" @click="calculateProfitPercentage">计算盈亏百分比</el-button>
+    <div class="result-container">
+      <span>盈亏百分比: {{ profitPercentage }}%</span>
+    </div>
   </div>
 </template>
 
@@ -58,8 +81,22 @@ export default {
         { id: 3, code: '510300', name: '300etf', date: '10.12', buyPrice: 3.977 },
         { id: 4, code: '002896', name: '中大力德', date: '10.12', buyPrice: 28.8 },
         { id: 5, code: '002456', name: '欧菲光', date: '10.12', buyPrice: 9.28 },
-      ]
+        // 更多数据...
+      ],
+      currentPage: 1,  // 当前页
+      pageSize: 10,    // 每页显示条数
+      buyPriceInput: '', // 买入价输入框绑定值
+      sellPriceInput: '', // 卖出价输入框绑定值
+      profitPercentage: 0 // 盈亏百分比结果
     };
+  },
+  computed: {
+    // 当前页显示的数据
+    currentTableData() {
+      const start = (this.currentPage - 1) * this.pageSize;
+      const end = this.currentPage * this.pageSize;
+      return this.tableData.slice(start, end);
+    }
   },
   mounted() {
     const savedData = localStorage.getItem('aboutTableData');
@@ -68,6 +105,29 @@ export default {
     }
   },
   methods: {
+    // 处理分页页数变化
+    handleCurrentChange(page) {
+      this.currentPage = page;
+    },
+    // 处理每页显示条数变化
+    handleSizeChange(size) {
+      this.pageSize = size;
+    },
+    // 计算盈亏百分比
+    calculateProfitPercentage() {
+      const buyPrice = parseFloat(this.buyPriceInput);
+      const sellPrice = parseFloat(this.sellPriceInput);
+
+      if (!isNaN(buyPrice) && !isNaN(sellPrice) && buyPrice > 0) {
+        const profit = ((sellPrice - buyPrice) / buyPrice) * 100;
+        this.profitPercentage = profit.toFixed(2); // 保留两位小数
+      } else {
+        this.$message({
+          message: '请输入有效的买入价和卖出价',
+          type: 'warning',
+        });
+      }
+    },
     // 根据拟买入价格计算指导卖出价
     calculatePrices(row) {
       const buyPrice = parseFloat(row.buyPrice);
@@ -129,5 +189,24 @@ export default {
 <style>
 .table-container {
   /* 可以根据需要添加样式 */
+}
+.calculator-container {
+  margin-top: 20px;
+  padding: 10px;
+  border-top: 1px solid #e0e0e0;
+}
+.calculator-container .el-input__wrapper{
+  margin-right:10px;
+}
+.calculator-container h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.result-container {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #2c3e50;
 }
 </style>
