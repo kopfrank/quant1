@@ -55,11 +55,7 @@
     <!-- 将新增行按钮放到表格下方 -->
     <el-button type="primary" @click="addRow">新增行</el-button>
     <el-button type="success" @click="saveData">保存数据到本地</el-button>
-    <br>
-    <el-button type="primary" @click="exportMultipleData" style="margin-top:10px;margin-right:10px;margin-bottom: 10px;">导出数据</el-button>
-    <br>
-    <span>导入数据: </span>
-    <input type="file" @change="importMultipleData" accept=".json"/>
+
 
   </div>
 </template>
