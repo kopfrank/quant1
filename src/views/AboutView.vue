@@ -43,7 +43,7 @@
     </div>
     <!-- 将新增行按钮放到表格下方 -->
     <el-button type="primary" @click="addRow">新增行</el-button>
-    <el-button type="success" @click="saveData">保存数据到 LocalStorage</el-button>
+    <el-button type="success" @click="saveData">保存数据到本地</el-button>
   </div>
 </template>
 
@@ -61,7 +61,7 @@ export default {
     };
   },
   mounted() {
-    const savedData = localStorage.getItem('tableData');
+    const savedData = localStorage.getItem('aboutTableData');
     if (savedData) {
       this.tableData = JSON.parse(savedData);
     }
@@ -115,7 +115,7 @@ export default {
       // 排序数据
       this.tableData.sort((a, b) => a.id - b.id);
       // 保存数据到 localStorage
-      localStorage.setItem('tableData', JSON.stringify(this.tableData));
+      localStorage.setItem('aboutTableData', JSON.stringify(this.tableData));
       this.$message({
         message: '数据已保存到 LocalStorage',
         type: 'success',

@@ -12,7 +12,7 @@ import HelloWorld from './components/HelloWorld.vue'
       <HelloWorld msg="You did it!" />
 
       <nav>
-        <!-- <RouterLink to="/">Home</RouterLink> -->
+        <RouterLink to="/">持仓</RouterLink>
         <RouterLink to="/about">投研计算器</RouterLink>
       </nav>
     </div>
@@ -57,7 +57,13 @@ nav a.router-link-exact-active:hover {
 nav a {
   display: inline-block;
   padding: 0 1rem;
+  color:black;
   border-left: 1px solid var(--color-border);
+}
+
+/* Styling for selected (active) RouterLink */
+nav a.router-link-active {
+  color: hsla(160, 100%, 37%, 1); /* Green color for active links */
 }
 
 nav a:first-of-type {
