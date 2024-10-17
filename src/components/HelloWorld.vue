@@ -9,7 +9,7 @@ defineProps({
 
 <template>
   <div class="greetings">
-    <h3 class="green">耐心 坚定 毅力</h3>
+    <h3 class="blue" style="font-weight: 600;">耐心 坚定 毅力</h3>
     <h3>
      event driven + good price + risk control 
      <br>

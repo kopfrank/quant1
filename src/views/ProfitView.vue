@@ -40,7 +40,7 @@
 
         <el-table-column label="操作" min-width="100">
           <template #default="scope">
-            <el-button type="danger" @click="deleteRow(scope.$index)">删除</el-button>
+            <el-button type="" @click="deleteRow(scope.$index)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -54,11 +54,12 @@
       v-model:current-page="currentPage"
       @current-change="handlePageChange">
     </el-pagination>
+    
 
     <br>
     <!-- 将新增行按钮放到表格下方 -->
     <el-button type="primary" @click="addRow">新增行</el-button>
-    <el-button type="success" @click="saveData">保存数据到本地</el-button>
+    <el-button type="primary" @click="saveData">保存数据到本地</el-button>
   </div>
 </template>
 

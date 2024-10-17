@@ -66,7 +66,7 @@ nav a {
 
 /* Styling for selected (active) RouterLink */
 nav a.router-link-active {
-  color: hsla(160, 100%, 37%, 1); /* Green color for active links */
+  font-weight: 600;
 }
 
 nav a:first-of-type {
