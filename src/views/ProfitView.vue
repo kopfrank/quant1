@@ -32,9 +32,9 @@
             <el-input v-model="scope.row.buyPrice" size="small"></el-input>
           </template>
         </el-table-column>
-        <el-table-column prop="buyPrice" label="盈亏" min-width="120">
+        <el-table-column prop="buyPercentage" label="盈亏百分比" min-width="120">
           <template #default="scope">
-            <el-input v-model="scope.row.buyPrice" size="small"></el-input>
+            <el-input v-model="scope.row.buyPercentage" size="small"></el-input>
           </template>
         </el-table-column>
 
@@ -70,11 +70,11 @@ export default {
   data() {
     return {
       tableData: [
-        { id: 1, code: '600760', name: '中航沈飞', date: '10.12', buyPrice: 45.35 },
-        { id: 2, code: '000768', name: '中航西飞', date: '10.12', buyPrice: 27.03 },
-        { id: 3, code: '510300', name: '300etf', date: '10.12', buyPrice: 3.977 },
-        { id: 4, code: '002896', name: '中大力德', date: '10.12', buyPrice: 28.8 },
-        { id: 5, code: '002456', name: '欧菲光', date: '10.12', buyPrice: 9.28 },
+        { id: 1, code: '600760', name: '中航沈飞', date: '10.12', buyPrice: 45.35,buyPercentage:0 },
+        { id: 2, code: '000768', name: '中航西飞', date: '10.12', buyPrice: 27.03,buyPercentage:0 },
+        { id: 3, code: '510300', name: '300etf', date: '10.12', buyPrice: 3.977,buyPercentage:0 },
+        { id: 4, code: '002896', name: '中大力德', date: '10.12', buyPrice: 28.8,buyPercentage:0},
+        { id: 5, code: '002456', name: '欧菲光', date: '10.12', buyPrice: 9.28,buyPercentage:0 },
         // Add more rows for testing
       ],
       currentPage: 1, // 当前页码
