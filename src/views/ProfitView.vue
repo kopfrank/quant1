@@ -60,7 +60,20 @@
     <!-- 将新增行按钮放到表格下方 -->
     <el-button type="primary" @click="addRow">新增行</el-button>
     <el-button type="primary" @click="saveData">保存数据到本地</el-button>
+
   </div>
+ 
+      <!-- 盈亏百分比计算器 -->
+      <div class="calculator-container">
+        <h3>盈亏百分比计算器</h3>
+        <el-input v-model="buyPriceInput" placeholder="请输入买入价" size="small" type="number" style="width: 160px;height:33px"></el-input>
+        <el-input v-model="sellPriceInput" placeholder="请输入卖出价" size="small" type="number" style="width: 160px;height:33px"></el-input>
+        <el-button type="primary" @click="calculateProfitPercentage">计算盈亏百分比</el-button>
+        <div class="result-container">
+          <span>盈亏百分比: {{ profitPercentage }}%</span>
+        </div>
+      </div>
+
 </template>
 
 
@@ -80,6 +93,9 @@ export default {
       ],
       currentPage: 1, // 当前页码
       pageSize: 10, // 每页显示的行数
+      buyPriceInput: '', // 买入价输入框绑定值
+      sellPriceInput: '', // 卖出价输入框绑定值
+      profitPercentage: 0 // 盈亏百分比结果
     };
   },
   mounted() {
@@ -89,6 +105,7 @@ export default {
     }
   },
   computed: {
+    
     // 计算盈亏总和
     totalProfit() {
       const total = this.tableData.reduce((total, row) => {
@@ -110,6 +127,21 @@ export default {
     }
   },
   methods: {
+     // 计算盈亏百分比
+     calculateProfitPercentage() {
+      const buyPrice = parseFloat(this.buyPriceInput);
+      const sellPrice = parseFloat(this.sellPriceInput);
+
+      if (!isNaN(buyPrice) && !isNaN(sellPrice) && buyPrice > 0) {
+        const profit = ((sellPrice - buyPrice) / buyPrice) * 100;
+        this.profitPercentage = profit.toFixed(2); // 保留两位小数
+      } else {
+        this.$message({
+          message: '请输入有效的买入价和卖出价',
+          type: 'warning',
+        });
+      }
+    },
     // 格式化数字，添加千分位
     formatValue(value) {
       if (!isNaN(value)) {
@@ -169,5 +201,25 @@ export default {
   margin-bottom: 10px;
   color: #2c3e50;
  
+
+}
+.calculator-container {
+  margin-top: 20px;
+  padding: 10px;
+  border-top: 1px solid #e0e0e0;
+}
+.calculator-container .el-input__wrapper{
+  margin-right:10px;
+}
+.calculator-container h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.result-container {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #2c3e50;
 }
 </style>

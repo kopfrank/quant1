@@ -66,17 +66,6 @@
     <el-button type="primary" @click="addRow">新增行</el-button>
     <el-button type="primary" @click="saveData">保存数据到本地</el-button>
   </div>
-
-  <!-- 盈亏百分比计算器 -->
-  <div class="calculator-container">
-    <h3>盈亏百分比计算器</h3>
-    <el-input v-model="buyPriceInput" placeholder="请输入买入价" size="small" type="number" style="width: 160px;height:33px"></el-input>
-    <el-input v-model="sellPriceInput" placeholder="请输入卖出价" size="small" type="number" style="width: 160px;height:33px"></el-input>
-    <el-button type="primary" @click="calculateProfitPercentage">计算盈亏百分比</el-button>
-    <div class="result-container">
-      <span>盈亏百分比: {{ profitPercentage }}%</span>
-    </div>
-  </div>
 </template>
 
 <script>
