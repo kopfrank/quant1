@@ -12,12 +12,12 @@ import HelloWorld from './components/HelloWorld.vue'
       <HelloWorld msg="You did it!" />
 
       <nav>
-        <RouterLink to="/">持仓</RouterLink>
+        <RouterLink to="/">todo</RouterLink>
+        <RouterLink to="/home">持仓</RouterLink>
         <RouterLink to="/trade">买卖记录</RouterLink>
         <RouterLink to="/profit">PnL盈亏</RouterLink>
         <RouterLink to="/about">投研计算器</RouterLink>
         <RouterLink to="/know">经验</RouterLink>
-        <RouterLink to="/todo">todo</RouterLink>
         <RouterLink to="/data">数据导入导出</RouterLink>
       </nav>
     </div>

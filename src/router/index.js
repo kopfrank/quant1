@@ -11,8 +11,16 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      name: 'todo',
+      component: TodoView
+    },
+    {
+      path: '/home',
       name: 'home',
-      component: HomeView
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/HomeView.vue')
     },
     {
       path: '/about',
@@ -46,14 +54,7 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/KnowView.vue')
     },
-    {
-      path: '/todo',
-      name: 'todo',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/TodoView.vue')
-    },
+    
     {
       path: '/data',
       name: 'data',
