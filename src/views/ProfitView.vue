@@ -12,6 +12,11 @@
             <el-input v-model="scope.row.id" size="small"></el-input>
           </template>
         </el-table-column>
+        <el-table-column prop="date" label="操作日期" min-width="120">
+          <template #default="scope">
+            <el-input v-model="scope.row.date" size="small"></el-input>
+          </template>
+        </el-table-column>
         <el-table-column prop="code" label="代码" min-width="120">
           <template #default="scope">
             <el-input v-model="scope.row.code" size="small"></el-input>
@@ -20,11 +25,6 @@
         <el-table-column prop="name" label="名称" min-width="120">
           <template #default="scope">
             <el-input v-model="scope.row.name" size="small"></el-input>
-          </template>
-        </el-table-column>
-        <el-table-column prop="date" label="操作日期" min-width="120">
-          <template #default="scope">
-            <el-input v-model="scope.row.date" size="small"></el-input>
           </template>
         </el-table-column>
         <el-table-column prop="buyPrice" label="盈亏" min-width="120">

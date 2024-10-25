@@ -7,43 +7,46 @@
             <el-input v-model="scope.row.id" size="small"></el-input> <!-- 可编辑的 ID 输入框 -->
           </template>
         </el-table-column>
-        <el-table-column prop="code" label="代码" min-width="120">
-          <template #default="scope">
-            <el-input v-model="scope.row.code" size="small"></el-input>
-          </template>
-        </el-table-column>
-        <el-table-column prop="name" label="名称" min-width="120">
-          <template #default="scope">
-            <el-input v-model="scope.row.name" size="small"></el-input>
-          </template>
-        </el-table-column>
-        <el-table-column prop="date" label="记录日期" min-width="120">
+        <el-table-column prop="date" label="记录日期" min-width="100">
           <template #default="scope">
             <el-input v-model="scope.row.date" size="small"></el-input>
           </template>
         </el-table-column>
-        <el-table-column prop="buyPrice" label="成本价" min-width="120">
+        <el-table-column prop="code" label="代码" min-width="100">
+          <template #default="scope">
+            <el-input v-model="scope.row.code" size="small"></el-input>
+          </template>
+        </el-table-column>
+        <el-table-column prop="name" label="名称" min-width="100">
+          <template #default="scope">
+            <el-input v-model="scope.row.name" size="small"></el-input>
+          </template>
+        </el-table-column>
+    
+        <el-table-column prop="buyPrice" label="成本价" min-width="100">
           <template #default="scope">
             <el-input v-model="scope.row.buyPrice" @input="calculatePrices(scope.row)" size="small"></el-input>
           </template>
         </el-table-column>
-        <el-table-column prop="holdposition" label="持有数量" min-width="120">
+        <el-table-column prop="holdposition" label="持有数量" min-width="100">
           <template #default="scope">
             <el-input v-model="scope.row.holdposition" @input="calculateValue(scope.row)" size="small"></el-input>
           </template>
         </el-table-column>
-        <el-table-column prop="holdvalue" label="持仓价值" min-width="120">
+        <el-table-column prop="holdvalue" label="持仓价值" min-width="100">
           <template #default="scope">
             <span>{{ formatValue(scope.row.holdvalue) }}</span> <!-- 显示格式化后的持仓价值 -->
           </template>
         </el-table-column>
-        <el-table-column prop="sellPrice3" label="指导卖出价 3%" min-width="120"></el-table-column>
-        <el-table-column prop="sellPrice5" label="指导卖出价 5%" min-width="120"></el-table-column>
-        <el-table-column prop="sellPrice10" label="指导卖出价 10%" min-width="120"></el-table-column>
-        <el-table-column prop="sellPrice20" label="指导卖出价 20%" min-width="120"></el-table-column>
-        <el-table-column prop="sellPriceMinus5" label="指导卖出价 -5%" min-width="120"></el-table-column>
-        <el-table-column prop="sellPriceMinus10" label="指导卖出价 -10%" min-width="130"></el-table-column>
-        <el-table-column prop="sellPriceMinus20" label="指导卖出价 -20%" min-width="130"></el-table-column>
+        <el-table-column prop="sellPrice3" label="卖出价 3%" min-width="70"></el-table-column>
+        <el-table-column prop="sellPrice5" label="卖出价 5%" min-width="70"></el-table-column>
+        <el-table-column prop="sellPrice10" label="卖出价 10%" min-width="80"></el-table-column>
+        <el-table-column prop="sellPrice15" label="卖出价 15%" min-width="80"></el-table-column>
+        <el-table-column prop="sellPrice20" label="卖出价 20%" min-width="80"></el-table-column>
+        <el-table-column prop="sellPriceMinus5" label="卖出价 -5%" min-width="80"></el-table-column>
+        <el-table-column prop="sellPriceMinus10" label="卖出价 -10%" min-width="80"></el-table-column>
+        <el-table-column prop="sellPriceMinus15" label="卖出价 -15%" min-width="80"></el-table-column>
+        <el-table-column prop="sellPriceMinus20" label="卖出价 -20%" min-width="80"></el-table-column>
         <el-table-column label="操作" min-width="100">
           <template #default="scope">
             <el-button type="" @click="deleteRow(scope.$index)">删除</el-button>
@@ -90,9 +93,11 @@ export default {
         row.sellPrice3 = (buyPrice * 1.03).toFixed(decimalPlaces);
         row.sellPrice5 = (buyPrice * 1.05).toFixed(decimalPlaces);
         row.sellPrice10 = (buyPrice * 1.10).toFixed(decimalPlaces);
+        row.sellPrice15 = (buyPrice * 1.15).toFixed(decimalPlaces);
         row.sellPrice20 = (buyPrice * 1.20).toFixed(decimalPlaces);
         row.sellPriceMinus5 = (buyPrice * 0.95).toFixed(decimalPlaces);
         row.sellPriceMinus10 = (buyPrice * 0.90).toFixed(decimalPlaces);
+        row.sellPriceMinus15 = (buyPrice * 0.85).toFixed(decimalPlaces);
         row.sellPriceMinus20 = (buyPrice * 0.80).toFixed(decimalPlaces);
       
       }
@@ -178,9 +183,11 @@ export default {
         sellPrice3: '',
         sellPrice5: '',
         sellPrice10: '',
+        sellPrice15: '',
         sellPrice20: '',
         sellPriceMinus5: '',
         sellPriceMinus10: '',
+        sellPriceMinus15: '',
         sellPriceMinus20: ''
       });
     },
