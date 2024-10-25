@@ -1,13 +1,16 @@
 <template>
   <div>
+    <el-card class="card" shadow="hover" style="">
     <div class="table-container">
      
       <el-button type="primary" @click="exportMultipleData" style="margin-top:10px;margin-right:10px;margin-bottom: 10px;">导出数据</el-button>
-      <br>
+      <br><br>
       <span>导入数据: </span>
       <input type="file" @change="importMultipleData" accept=".json"/>
 
   </div>
+
+  </el-card>
 </div>
 </template>
 
