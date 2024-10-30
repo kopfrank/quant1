@@ -11,7 +11,7 @@ defineProps({
   <div class="greetings">
     <h3 class="blue" style="font-weight: 600;">耐心 坚定 毅力</h3>
     <h3>
-     event driven + good price + risk control 
+     event driven(能够有热度 有想象空间 有爆发力)+ 提前布局 + good price + risk control 
      <br>
      壁虎理论+吃鱼理论+价格 价位太高 再好的逻辑也不进
     </h3>
