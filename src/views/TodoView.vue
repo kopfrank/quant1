@@ -6,7 +6,7 @@
       <el-input
         type="textarea"
         v-model="todo"
-        rows="27"
+        rows="26"
         placeholder=""
       ></el-input>
     </el-card>
