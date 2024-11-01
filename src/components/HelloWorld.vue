@@ -14,8 +14,6 @@ defineProps({
      event driven(能够有热度 有想象空间 有爆发力)+ 提前布局 + good price + risk control 
      <br>
      壁虎理论+吃鱼理论+价格 价位太高 再好的逻辑也不进
-     <br>
-     没把握的就不做 做也拿不住 拿得住才能赚大钱 要有格局一些 
     </h3>
 
   </div>

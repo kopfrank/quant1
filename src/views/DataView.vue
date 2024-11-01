@@ -7,6 +7,10 @@
       <br><br>
       <span>导入数据: </span>
       <input type="file" @change="importMultipleData" accept=".json"/>
+      <br><br>
+      <p>数据存储位置:</p>
+      <a href="https://note.youdao.com/web/#/file/WEB0497e999ea04a3e932ae5f2b392509b3/note/WEBbce895a52615b7fc25f5f6219b25ba0c/" target="_blank">https://note.youdao.com/web/#/file/WEB0497e999ea04a3e932ae5f2b392509b3/note/WEBbce895a52615b7fc25f5f6219b25ba0c/</a>
+
 
   </div>
 
