@@ -3,11 +3,7 @@
     <el-card class="card" shadow="hover" style="">
     <div class="table-container">
      
-      <el-button type="primary" @click="exportMultipleData" style="margin-top:10px;margin-right:10px;margin-bottom: 10px;">导出数据</el-button>
-      <br><br>
-      <span>导入数据: </span>
-      <input type="file" @change="importMultipleData" accept=".json"/>
-      <!-- <br><br>
+  
       <p>数据存储位置:</p>
       <a href="https://note.youdao.com/web/#/file/WEB0497e999ea04a3e932ae5f2b392509b3/note/WEBbce895a52615b7fc25f5f6219b25ba0c/" target="_blank">https://note.youdao.com/web/#/file/WEB0497e999ea04a3e932ae5f2b392509b3/note/WEBbce895a52615b7fc25f5f6219b25ba0c/</a>
       <br><br>
@@ -15,12 +11,13 @@
       <a href="https://xueqiu.com/#/optional?t=1730444377522" target="_blank">https://xueqiu.com/#/optional?t=1730444377522</a>
       <p>我的东财自选:</p>
       <a href="https://quote.eastmoney.com/zixuan/?from=home" target="_blank">https://quote.eastmoney.com/zixuan/?from=home</a>
+      <br><br>
       <p>东财板块资金流动:</p>
       <a href="https://quote.eastmoney.com/center/hsbk.html" target="_blank">https://quote.eastmoney.com/center/hsbk.html</a>
-      <p>英为财情资讯:</p>
+      <p>英为财情:</p>
       <a href="https://cn.investing.com/news" target="_blank">https://cn.investing.com/news</a>
       <p>华尔街日报:</p>
-      <a href="https://cn.wsj.com/" target="_blank">https://cn.wsj.com/</a> -->
+      <a href="https://cn.wsj.com/" target="_blank">https://cn.wsj.com/</a>
 
 
 
