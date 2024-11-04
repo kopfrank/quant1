@@ -12,12 +12,16 @@
       <p>我的东财自选:</p>
       <a href="https://quote.eastmoney.com/zixuan/?from=home" target="_blank">https://quote.eastmoney.com/zixuan/?from=home</a>
       <br><br>
+      <p>东财资讯:</p>
+      <a href="https://www.eastmoney.com/" target="_blank">https://www.eastmoney.com/</a>
       <p>东财板块资金流动:</p>
       <a href="https://quote.eastmoney.com/center/hsbk.html" target="_blank">https://quote.eastmoney.com/center/hsbk.html</a>
       <p>英为财情:</p>
       <a href="https://cn.investing.com/news" target="_blank">https://cn.investing.com/news</a>
       <p>华尔街日报:</p>
       <a href="https://cn.wsj.com/" target="_blank">https://cn.wsj.com/</a>
+      <p>账户:11887221@qq.com 密码:lxy1---88</p>
+      
 
 
 
