@@ -17,7 +17,8 @@ import HelloWorld from './components/HelloWorld.vue'
         <RouterLink to="/trade">买卖记录</RouterLink>
         <RouterLink to="/profit">PnL盈亏</RouterLink>
         <RouterLink to="/about">投研计算器</RouterLink>
-        <RouterLink to="/know">经验</RouterLink>
+        <RouterLink to="/know">市场经验</RouterLink>
+        <RouterLink to="/life">Life</RouterLink>
         <RouterLink to="/news">常用网站</RouterLink>
         <RouterLink to="/show">每天看</RouterLink>
         <RouterLink to="/data">数据导入导出</RouterLink>

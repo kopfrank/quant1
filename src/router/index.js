@@ -5,6 +5,7 @@ import ProfitView from '../views/ProfitView.vue'
 import DataView from '../views/DataView.vue'
 import TodoView from '../views/TodoView.vue'
 import KnowView from '../views/KnowView.vue'
+import LifeView from '../views/LifeView.vue'
 import NewsView from '../views/NewsView.vue'
 import ShowView from '../views/ShowView.vue'
 
@@ -55,6 +56,14 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/KnowView.vue')
+    },
+    {
+      path: '/life',
+      name: 'life',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/LifeView.vue')
     },
     
     {

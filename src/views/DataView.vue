@@ -50,6 +50,7 @@ export default {
         homeTableData: localStorage.getItem('homeTableData'),
         profitTableData: localStorage.getItem('profitTableData'), // 其他项目
         experienceData: localStorage.getItem('experienceData'), // 其他项目
+        lifeData: localStorage.getItem('lifeData'), // 其他项目
         todoData: localStorage.getItem('todoData'), // 其他项目
         // 可以添加更多项
       };
