@@ -2,7 +2,7 @@
   <div>
     <!-- 显示盈亏数字的区域 -->
     <div class="summary-container">
-      <span>盈亏总计: ¥{{ totalProfit }}</span>
+      <span>盈亏总计: ¥{{ totalProfit }}</span><span style="padding-left: 10px;font-size: 16px;">since 2024 Oct</span>
     </div>
 
     <div class="table-container">
